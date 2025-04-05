@@ -1,0 +1,124 @@
+Community Event Management System Design
+System Overview
+
+The Community Event Management System is designed to facilitate interaction between community members and administrators for event management. It allows members to view events, apply for participation, and check their application status, while administrators can manage events, review applications, and maintain the member directory.
+Architecture Components
+1. Class Structure
+Base Class
+
+    User (Abstract Base Class)
+        Provides common attributes and behaviors for all users
+        Implements abstraction through pure virtual functions
+
+Derived Classes
+
+    CommunityMember (inherits from User)
+        Handles member-specific functionality
+        Manages event applications
+    Administrator (inherits from User)
+        Handles administrative tasks
+        Manages events and applications
+
+Supporting Classes
+
+    Event
+        Stores event details (name, date)
+        Provides accessor methods
+    Application
+        Tracks application status
+        Links members to events
+
+2. Data Management
+
+    Arrays as Data Stores
+        Events storage: Event eventList[20]
+        Members storage: CommunityMember members[20]
+        Applications storage: Inside each member object as Application applications[10]
+    Counter Variables
+        eventCount: Tracks number of events
+        memberCount: Tracks number of members
+        appCount: Tracks number of applications per member
+
+3. Authentication System
+
+    Member Authentication
+        Username (ID) and password verification
+        Login session management
+    Admin Authentication
+        Fixed credentials (username: "admin", password: "admin123")
+        Separate admin menu and privileges
+
+Functional Flow
+1. System Initialization
+
+    Pre-populate events (April 10-30, 2025)
+    Initialize test user accounts
+
+2. User Authentication Flow
+
+    User selects login type (member/admin)
+    System validates credentials
+    Routes to appropriate interface
+
+3. Community Member Flow
+
+    View events (displayed automatically after login)
+    Apply for events
+    Check application status
+    Logout
+
+4. Administrator Flow
+
+    Add/manage events
+    View all applications
+    Approve/reject applications (using Application ID)
+    Add community members
+    Delete community members
+    Logout
+
+Object-Oriented Design Principles Applied
+1. Inheritance
+
+    User as the parent class
+    CommunityMember and Administrator as specialized derived classes
+
+2. Encapsulation
+
+    Private data members with public accessor methods
+    Protected access for inherited members
+
+3. Abstraction
+
+    Pure virtual functions in User class
+    Implementation in derived classes
+
+4. Polymorphism
+
+    Different implementations of displayMenu() in derived classes
+
+Security Features
+
+    Password protection for all user accounts
+    Input validation for user actions
+    Access control based on user type
+
+Limitations and Future Improvements
+Current Limitations
+
+    Fixed-size arrays limit scalability
+    No persistent data storage (data lost when program ends)
+    Limited search functionality
+
+Potential Improvements
+
+    Replace arrays with dynamic data structures (vectors, linked lists)
+    Add file-based or database storage
+    Implement more robust error handling
+    Add event categories and filtering options
+    Implement a notification system
+    Add event capacity limitations
+    Improve user interface with a GUI
+
+This design emphasizes object-oriented principles while providing a functional system for community event management with clear separation between member and administrative functions.
+
+
